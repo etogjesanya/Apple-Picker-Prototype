@@ -4,15 +4,19 @@ using UnityEngine;
 
 public class Apple : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [Header("Set in Inspector")]
+    public static float bottomY = -19;
 
-    // Update is called once per frame
     void Update()
     {
-        
+        if (transform.position.y < bottomY)
+        {
+            Destroy(this.gameObject);
+
+            //Получить ссылку на компонент ApplePicker главной камеры
+            ApplePicker apScript = Camera.main.GetComponent<ApplePicker>();
+            //Вызвать общедоступный метод AppleDestroyed() из apScript
+            apScript.AppleDestroyed();
+        }
     }
 }
